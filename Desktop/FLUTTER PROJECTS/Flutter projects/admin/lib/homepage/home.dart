@@ -1,8 +1,7 @@
+
 import'package:flutter/material.dart';
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:fl_chart/fl_chart.dart';
-
-
+import 'package:admin/homepage/widgets/widgets.dart';
+import 'Data/utilities.dart';
 
 class home extends StatefulWidget {
   @override
@@ -14,16 +13,77 @@ class _homeState extends State<home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text(
-          'Load Consumption',
-              style:TextStyle(
-            color: Colors.white
-        ),
+        title:Center(
+          child: Text(
+            'LOADS',
+                style:TextStyle(
+              color: Colors.white
+          ),
+          ),
         )
       ),
-      body:Container(),
+      body:Container(
+        child: Column(
+          children: [
+            Container(
+             height:47,
+            ),
+            MyPieChart(),
+            SizedBox(
+              height: 20,
+            ),
+            buildListview(utilities),
+          ],
+        ),
+      ),
     );
   }
 }
 
-    
+buildListview (List<Utility>data) {
+  return Expanded(
+    child: Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Container(
+        decoration:BoxDecoration(
+          color: Colors.black
+        ),
+        child:ListView.builder(itemCount: data.length,
+       itemBuilder:(context,index){
+          Utility item=data[index];
+          return Column(
+
+            children: [
+              ListTile(
+                leading:Container(
+                  height: 10,
+                  width: 10,
+                  decoration: BoxDecoration(
+                    color: item.color,
+                  ),
+                ),
+                title: Text(
+                  item.utility,
+                  style: TextStyle(
+                    fontSize:10,
+                  ),
+                ),
+                trailing: Text(
+                    item.kw.toString(),
+                  style: TextStyle(
+                    fontSize:10,
+                  ),
+                ),
+              ),
+              Divider(
+                color: Colors.blueGrey,
+              )
+            ],
+          );
+
+       },
+        )
+      ),
+    ),
+  );
+}
