@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'homepage/home.dart';
+import 'homepage/loadpages/home.dart';
 void main (){
   return runApp(
-      admin()
+      const admin()
   ) ;
 }
 class admin extends StatelessWidget {
   const admin({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
